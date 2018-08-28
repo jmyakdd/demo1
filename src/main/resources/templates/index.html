@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table border="0">
+        <tr th:each="user:${users}">
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.age}">Onions</td>
+            <td th:text="${user.sex}">Onions</td>
+        </tr>
+    </table>
+    <a th:href="@{./jump}">jump</a>
+</body>
+</html>
