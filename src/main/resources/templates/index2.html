@@ -3,12 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="/css/bootstrap.min.css">
 </head>
 <body>
-    <p th:object="${user}">
-        <span th:text="*{name}"/>
-    </p>
-    <a th:href="@{./map}">map</a>
-    <a href="./map">map</a>
+    <button id="addUser">添加用户</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>sex</th>
+                <th>age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user:${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.age}"></td>
+                <td th:text="${user.sex}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <img src="/img/map.png" class="img-responsive" alt="响应式图片"><br>
+
 </body>
 </html>

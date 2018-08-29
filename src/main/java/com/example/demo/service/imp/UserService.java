@@ -17,4 +17,33 @@ public class UserService implements IUserService {
     public List<User> getUserList() {
         return userDao.getUserList();
     }
+
+    @Override
+    public User getUserById(int id) {
+        return null;
+    }
+
+    @Override
+    public int update(User user) {
+        return 0;
+    }
+
+    @Override
+    public int delete(int id) {
+        return 0;
+    }
+
+    @Override
+    public int addUser(User user) {
+        return 0;
+    }
+
+    @Override
+    public int login(String name, String password) {
+        User user = userDao.login(name,password);
+        if (user != null) {
+            return 1;
+        }
+        return 0;
+    }
 }

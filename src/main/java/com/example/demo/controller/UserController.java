@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -14,28 +16,27 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @GetMapping(path = "getList")
-    public String getUserList(Model model){
-        List<User> users = userService.getUserList();
-        for (User u : users){
-            System.out.println(u.toString());
-        }
+    @GetMapping(path = "/")
+    public String index(Model model){
+        List<User>users = userService.getUserList();
         model.addAttribute("users",users);
-        return "index.html";
+        return "index";
     }
 
-    @GetMapping(path = "jump")
-    public String jump(Model model){
-        List<User> users = userService.getUserList();
-        for (User u : users){
-            System.out.println(u.toString());
+    @PostMapping(path = "/login")
+    public String login(Model model,@RequestParam String name,@RequestParam String password){
+        int result = userService.login(name,password);
+        if(result == 0){
+            return "map";
+        }else{
+            List<User> users = userService.getUserList();
+            model.addAttribute("users",users);
+            return "index2";
         }
-        model.addAttribute("user",users.get(0));
-        return "index2.html";
     }
 
-    @GetMapping(path = "map")
-    public String map(){
-        return "map.html";
+    @GetMapping(path = "/index2")
+    public String index2(){
+        return "index2";
     }
 }

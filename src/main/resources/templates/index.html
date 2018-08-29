@@ -13,5 +13,11 @@
         </tr>
     </table>
     <a th:href="@{./jump}">jump</a>
+
+    <form action="/login" method="post">
+        <input name="name" placeholder="用户名"><br>
+        <input name="password" placeholder="密码"><br>
+        <button onclick="onsubmit">登录</button><br>
+    </form>
 </body>
 </html>
